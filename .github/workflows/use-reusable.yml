@@ -70,8 +70,15 @@ jobs:
     needs: build
     uses: ./.github/workflows/reusable.yml #path to reusable wf
     with: 
-       artifact-name: dist-files
-    
+       artifact-name: dist-files #Artifact file given to reusable WF as input
+    # secrets:
+    #     some-secret: ${{secrets.some-secret}}
+  print-deploy-result:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print deploy Output
+      run: echo ${{ needs.deploy.outputs.result }}
   report:
     needs: [lint, deploy]
     if: failure() #This job will run if any other job fails
