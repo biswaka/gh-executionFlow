@@ -15,6 +15,6 @@ jobs:
           with:
             node-version: ${{ matrix.node-version }} #job will run for all node versions, ubuntu-14,16,18 ; windows-14,16,18; total 6 runs
         - name: Install Dependencies
-          run: npm run ci
+          run: npm ci
         - name: Build Project
           run: npm run build
