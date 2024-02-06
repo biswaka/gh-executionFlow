@@ -36,7 +36,7 @@ jobs:
         id: run-tests
         run: npm run test
       - name: Upload test report
-        if: steps.run-tests.outcome == 'failure' #outcome has [success, failure, cancelled, skipped]
+        if: failure() &&  steps.run-tests.outcome == 'failure' #outcome has [success, failure, cancelled, skipped], conclusion field is also there
         uses: actions/upload-artifact@v4
         with:
           name: test-report
